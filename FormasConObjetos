@@ -1,0 +1,410 @@
+//Juan Jose De jesus Gonzalez Andrade
+//22110056
+//Programacion Orientada a Objetos
+//Proyecto parcial 1
+
+#include <iostream>;
+#include "iomanip";
+#include <conio.h>:
+using namespace std;
+
+class Objeto
+{
+public:
+    int largo;
+    int Coordenada1;
+    int Coordenada2;
+};
+
+class Cuadrado : public Objeto
+{
+public:
+    int Forma;
+    void IniciarCuadrado(int, int, int, int);
+};
+
+class Rectangulo : public Objeto
+{
+public:
+    int ancho;
+    void IniciarRectangulo(int, int, int, int);
+};
+
+class Triangulo : public Objeto
+{
+public:
+    void IniciarTriangulo(int, int, int);
+};
+
+Menu objMenu;
+Cuadrado objCuadrado;
+Triangulo objetoTriangulo;
+Rectangulo objetoRectangulo;
+
+class Menu
+{
+public:
+    int obtenerdato;
+    void iniciarMenu();
+};
+
+int main()
+{
+    for (size_t i = 0; i < 100000000; i++)
+    {
+        objMenu.iniciarMenu();
+    }
+}
+
+void Menu::iniciarMenu()
+{
+    system("cls");
+    cout << "¿Que figura vamos dibujar ? " 
+        << endl << "1-. Cuadrado" 
+        << endl << "2-. Triangulo" 
+        << endl << "3-. Rectangulo" 
+        << endl;
+    cin >> obtenerdato;
+
+    if (obtenerdato == 1)
+    {
+        system("cls");
+        cout << "Ingrese la longitud del cuadrado" << endl;
+        cin >> objCuadrado.largo;
+        cout << "1-. Vacio" << endl << "2-. Lleno" << endl;
+        cin >> objCuadrado.Forma;
+        cout << "Ingrese las coordenada incial 1" << endl;
+        cin >> objCuadrado.Coordenada1;
+        cout << "Ingrese las coordenada incial 2" << endl;
+        cin >> objCuadrado.Coordenada2;
+        //Se inicia la construccion
+        objCuadrado.IniciarCuadrado(objCuadrado.largo, objCuadrado.Forma, objCuadrado.Coordenada1, objCuadrado.Coordenada2);
+
+    }
+
+    if (obtenerdato == 2)
+    {
+        system("cls");
+        cout << "Ingrese el largo del Triangulo" << endl;
+        cin >> objetoTriangulo.largo;
+        cout << "Ingresa la coordenada 1" << endl;
+        cin >> objetoTriangulo.Coordenada1;
+        cout << "Ingresa la coordenada 2" << endl;
+        cin >> objetoTriangulo.Coordenada2;
+        //Se inicia la construccion
+        objetoTriangulo.IniciarTriangulo(objetoTriangulo.largo, objetoTriangulo.Coordenada1, objetoTriangulo.Coordenada2);
+
+    }
+    if (obtenerdato == 3)
+    {
+        system("cls");
+        cout << "Ingresa el alto del Rectangulo" << endl;
+        cin >> objetoRectangulo.largo;
+        cout << "Ingresa el lado del Rectangulo" << endl;
+        cin >> objetoRectangulo.ancho;
+        cout << "Ingresa la coordenada 1" << endl;
+        cin >> objetoRectangulo.Coordenada1;
+        cout << "Ingresa la coordenada 2" << endl;
+        cin >> objetoRectangulo.Coordenada2;
+        //Se inicia la construccion
+        objetoRectangulo.IniciarRectangulo(objetoRectangulo.largo, objetoRectangulo.ancho, objetoRectangulo.Coordenada1, objetoRectangulo.Coordenada2);
+
+    }
+
+
+}
+
+void Cuadrado::IniciarCuadrado(int largo, int Forma, int Coordenada1, int Coordenada2)
+{
+    for (size_t i = 0; i < 10000000; i++)
+    {
+        system("cls");
+
+        if (Coordenada1 < 0)
+        {
+            Coordenada1 = 0;
+        }
+
+        if (Coordenada2 < 0)
+        {
+            Coordenada2 = 0;
+        }
+
+        if (Coordenada1 > 30)
+        {
+            Coordenada1 = 30;
+        }
+
+        if (Coordenada2 > 20)
+        {
+            Coordenada2 = 20;
+        }
+
+        
+        if (Forma == 1)
+        {
+            for (size_t a = 0; a < largo + Coordenada2; a++)
+            {
+                if (a < Coordenada2)
+                {
+                    cout << "    ";
+                }
+                else
+                {
+                    for (size_t b = 0; b < largo + Coordenada1; b++)
+                    {
+                        if (b < Coordenada1)
+                        {
+                            cout << "   ";
+                        }
+                        else if (b > Coordenada1 && b != Coordenada1 && a != Coordenada2 && b != Coordenada1 + largo - 1 && a != Coordenada2 + largo - 1 && a > Coordenada2)
+                        {
+
+                            cout << "   ";
+                        }
+                        else cout << " * ";
+
+                    }
+                }
+                cout << endl;
+            }
+        }
+
+        if (Forma == 2)
+        {
+            for (size_t i = 0; i < largo + Coordenada2; i++)
+            {
+                if (i < Coordenada2)
+                {
+                    cout << "   ";
+                }
+                else
+                {
+                    for (size_t i = 0; i < largo + Coordenada1; i++)
+                    {
+                        if (i < Coordenada1)
+                        {
+                            cout << "   ";
+                        }
+                        else cout << " * ";
+
+                    }
+                }
+                cout << endl;
+            }
+        }
+
+        for (size_t i = 0; i < 10000000; i++)
+        {
+            char tecla = _getch();
+
+            if (tecla == 'A' || tecla == 'a')
+            {
+                Coordenada1 = Coordenada1 - 1;
+                objCuadrado.IniciarCuadrado(largo, Forma, Coordenada1, Coordenada2);
+            }
+
+            if (tecla == 'S' || tecla == 's')
+            {
+                Coordenada2 = Coordenada2 + 1;
+                objCuadrado.IniciarCuadrado(largo, Forma, Coordenada1, Coordenada2);
+            }
+
+            if (tecla == 'D' || tecla == 'd')
+            {
+                Coordenada1 = Coordenada1 + 1;
+                objCuadrado.IniciarCuadrado(largo, Forma, Coordenada1, Coordenada2);
+            }
+
+            if (tecla == 'W' || tecla == 'w')
+            {
+                Coordenada2 = Coordenada2 - 1;
+                objCuadrado.IniciarCuadrado(largo, Forma, Coordenada1, Coordenada2);
+            }
+
+            if (tecla == 'L' || tecla == 'l')
+            {
+
+                objMenu.iniciarMenu();
+            }
+        }
+    }
+}
+
+void Triangulo::IniciarTriangulo(int largo, int Coordenada1, int Coordenada2)
+{
+    int contador = 0;
+    for (size_t i = 0; i < 10000000; i++)
+    {
+        system("cls");
+        
+        if (Coordenada1 < 0)
+        {
+            Coordenada1 = 0;
+        }
+
+        if (Coordenada2 < 0)
+        {
+            Coordenada2 = 0;
+        }
+
+        if (Coordenada1 > 30)
+        {
+            Coordenada1 = 30;
+        }
+
+        if (Coordenada2 > 20)
+        {
+            Coordenada2 = 20;
+        }
+
+        contador = 0;
+        for (size_t a = 0; a < largo + Coordenada2; a++)
+        {
+            if (a < Coordenada2)
+            {
+                cout << "    ";
+            }
+            else
+            {
+                for (size_t b = 0; b < largo + Coordenada1; b++)
+                {
+                    if (b < Coordenada1)
+                    {
+                        cout << "   ";
+                    }
+                    else if (b > Coordenada1 + contador)
+                    {
+                        cout << "  ";
+                    }
+                    else
+                        cout << " * ";
+                }
+                contador = contador + 1;
+            }
+            if (contador >= largo)
+            {
+                contador == largo;
+            }
+            cout << endl;
+        }
+
+        for (size_t i = 0; i < 10000000; i++)
+        {
+            char tecla = _getch();
+
+            if (tecla == 'A' || tecla == 'a')
+            {
+                Coordenada1 = Coordenada1 - 1;
+                objetoTriangulo.IniciarTriangulo(largo, Coordenada1, Coordenada2);
+            }
+
+            if (tecla == 'S' || tecla == 's')
+            {
+                Coordenada2 = Coordenada2 + 1;
+                objetoTriangulo.IniciarTriangulo(largo, Coordenada1, Coordenada2);
+            }
+
+            if (tecla == 'D' || tecla == 'd')
+            {
+                Coordenada1 = Coordenada1 + 1;
+                objetoTriangulo.IniciarTriangulo(largo, Coordenada1, Coordenada2);
+            }
+
+            if (tecla == 'W' || tecla == 'w')
+            {
+                Coordenada2 = Coordenada2 - 1;
+                objetoTriangulo.IniciarTriangulo(largo, Coordenada1, Coordenada2);
+            }
+
+            if (tecla == 'L' || tecla == 'l')
+            {
+                objMenu.iniciarMenu();
+            }
+        }
+    }
+}
+
+void Rectangulo::IniciarRectangulo(int largo, int ancho, int Coordenada1, int Coordenada2)
+{
+    for (size_t i = 0; i < 10000000; i++)
+    {
+        system("cls");
+
+        if (Coordenada1 < 0)
+        {
+            Coordenada1 = 0;
+        }
+
+        if (Coordenada2 < 0)
+        {
+            Coordenada2 = 0;
+        }
+
+        if (Coordenada1 > 30)
+        {
+            Coordenada1 = 30;
+        }
+
+        if (Coordenada2 > 20)
+        {
+            Coordenada2 = 20;
+        }
+
+        for (size_t i = 0; i < ancho + Coordenada2; i++)
+        {
+            if (i < Coordenada2)
+            {
+                cout << "   ";
+            }
+            else
+            {
+                for (size_t i = 0; i < largo + Coordenada1; i++)
+                {
+                    if (i < Coordenada1)
+                    {
+                        cout << "   ";
+                    }
+                    else cout << " * ";
+                }
+            }
+
+            cout << endl;
+        }
+
+        for (size_t i = 0; i < 10000000; i++)
+        {
+            
+            char tecla = _getch();
+            
+            if (tecla == 'A' || tecla == 'a')
+            {
+                Coordenada1 = Coordenada1 - 1;
+                objetoRectangulo.IniciarRectangulo(largo, ancho, Coordenada1, Coordenada2);
+            }
+
+            if (tecla == 'S' || tecla == 's')
+            {
+                Coordenada2 = Coordenada2 + 1;
+                objetoRectangulo.IniciarRectangulo(largo, ancho, Coordenada1, Coordenada2);
+            }
+
+            if (tecla == 'D' || tecla == 'd')
+            {
+                Coordenada1 = Coordenada1 + 1;
+                objetoRectangulo.IniciarRectangulo(largo, ancho, Coordenada1, Coordenada2);
+            }
+
+            if (tecla == 'W' || tecla == 'w')
+            {
+                Coordenada2 = Coordenada2 - 1;
+                objetoRectangulo.IniciarRectangulo(largo, ancho, Coordenada1, Coordenada2);
+            }
+
+            if (tecla == 'L' || tecla == 'l')
+            {
+                objMenu.iniciarMenu();
+            }
+        }
+    }
+}
